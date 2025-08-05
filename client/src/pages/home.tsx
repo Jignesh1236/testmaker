@@ -21,7 +21,7 @@ export default function Home() {
                 <ClipboardCheck className="text-white text-xl" size={24} />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-800">SANRMEGH COMPUTER EDUCATION</h1>
+                <h1 className="text-xl font-bold text-slate-800">SANTMEGH COMPUTER EDUCATION</h1>
                 <p className="text-xs text-slate-500">Create & Share Tests Instantly</p>
               </div>
             </div>
@@ -29,7 +29,7 @@ export default function Home() {
               <Button variant="ghost" className="text-slate-600 hover:text-slate-800" asChild>
                 <Link href="/tests">
                   <BarChart3 className="mr-2" size={16} />
-                  My Tests
+                  My Tests*
                 </Link>
               </Button>
               <Button asChild className="bg-blue-500 hover:bg-blue-600">
@@ -55,6 +55,27 @@ export default function Home() {
               Upload questions, generate unique test links, and track live results with our powerful test creation platform.
             </p>
             
+            {/* Hero Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto mb-8">
+              <Card className="border border-slate-200">
+                <CardContent className="p-6">
+                  <div className="text-2xl font-bold text-blue-500 mb-2">2,500+</div>
+                  <div className="text-sm text-slate-600">Tests Created</div>
+                </CardContent>
+              </Card>
+              <Card className="border border-slate-200">
+                <CardContent className="p-6">
+                  <div className="text-2xl font-bold text-emerald-500 mb-2">45,000+</div>
+                  <div className="text-sm text-slate-600">Test Attempts</div>
+                </CardContent>
+              </Card>
+              <Card className="border border-slate-200">
+                <CardContent className="p-6">
+                  <div className="text-2xl font-bold text-indigo-500 mb-2">98%</div>
+                  <div className="text-sm text-slate-600">Success Rate</div>
+                </CardContent>
+              </Card>
+            </div>
 
             <Button asChild size="lg" className="bg-blue-500 hover:bg-blue-600 px-8 py-4 text-lg font-semibold">
               <Link href="/create">
