@@ -1,9 +1,15 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ClipboardCheck, Upload, Link as LinkIcon, Timer, ChartLine, Rocket, BarChart3, Plus } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ClipboardCheck, Upload, Link as LinkIcon, Timer, ChartLine, Rocket, BarChart3, Plus, Eye, Users, Clock } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
+  const { data: tests = [], isLoading } = useQuery({
+    queryKey: ["/api/tests"],
+    select: (data) => data.slice(0, 5), // Show only latest 5 tests
+  });
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Navigation Header */}
@@ -20,9 +26,11 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" className="text-slate-600 hover:text-slate-800">
-                <BarChart3 className="mr-2" size={16} />
-                My Tests
+              <Button variant="ghost" className="text-slate-600 hover:text-slate-800" asChild>
+                <Link href="/tests">
+                  <BarChart3 className="mr-2" size={16} />
+                  My Tests
+                </Link>
               </Button>
               <Button asChild className="bg-blue-500 hover:bg-blue-600">
                 <Link href="/create">
@@ -120,6 +128,75 @@ export default function Home() {
             </Card>
           </div>
         </section>
+
+        {/* Recent Tests Section */}
+        {tests.length > 0 && (
+          <section className="mb-16">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-slate-800">Recent Tests</h3>
+              <Button variant="outline" asChild>
+                <Link href="/create">
+                  <Plus className="mr-2" size={16} />
+                  Create New Test
+                </Link>
+              </Button>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {tests.map((test: any) => (
+                <Card key={test.id} className="hover:shadow-lg transition-shadow border border-slate-200">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <CardTitle className="text-lg font-semibold text-slate-800 mb-1">
+                          {test.title}
+                        </CardTitle>
+                        <div className="flex items-center space-x-4 text-sm text-slate-500">
+                          <div className="flex items-center">
+                            <Clock className="mr-1" size={14} />
+                            {test.duration} min
+                          </div>
+                          <div className="flex items-center">
+                            <ClipboardCheck className="mr-1" size={14} />
+                            Active Test
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button size="sm" variant="outline" asChild>
+                          <Link href={`/test/${test.id}`}>
+                            <Eye className="mr-1" size={14} />
+                            Preview
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline" asChild>
+                          <Link href={`/results/${test.id}`}>
+                            <BarChart3 className="mr-1" size={14} />
+                            Results
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="bg-slate-50 rounded-lg p-3 mb-3">
+                      <div className="text-xs font-medium text-slate-500 mb-1">Test Link</div>
+                      <div className="text-sm text-blue-600 font-mono break-all select-all">
+                        {window.location.origin}/test/{test.id}
+                      </div>
+                    </div>
+                    <div className="bg-slate-50 rounded-lg p-3">
+                      <div className="text-xs font-medium text-slate-500 mb-1">Results Dashboard</div>
+                      <div className="text-sm text-indigo-600 font-mono break-all select-all">
+                        {window.location.origin}/results/{test.id}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
