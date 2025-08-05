@@ -104,14 +104,13 @@ export default function CreateTest() {
         optionC: q.optionC,
         optionD: q.optionD,
         correctAnswer: q.correctAnswer,
-        marks: q.marks,
-        timeLimit: q.timeLimit,
+        marks: q.marks || 1,
+        timeLimit: q.timeLimit || null,
       }));
       
       setQuestions(prev => [...prev, ...csvQuestions]);
       
-      // Show success modal
-      setShowGeneratedModal(true);
+      // Don't show generated modal here - questions are just added to form
       queryClient.invalidateQueries({ queryKey: ["/api/tests"] });
     },
     onError: (error) => {
@@ -182,7 +181,7 @@ export default function CreateTest() {
     
     if (!testId) {
       // Create a basic test to attach questions to
-      const testData = form.getValues();
+      const testData = testForm.getValues();
       if (!testData.title || !testData.duration) {
         toast({
           title: "Complete Test Details First",
@@ -448,8 +447,8 @@ export default function CreateTest() {
             </Card>
 
             {/* Action Buttons */}
-            <div className="sticky bottom-4 bg-white border-t pt-4 -mx-6 px-6">
-              <div className="flex justify-between items-center">
+            <div className="mt-6 pt-4 border-t bg-white">
+              <div className="flex justify-between items-center gap-4">
                 <Button type="button" variant="secondary" size="lg">
                   <Save className="mr-2" size={16} />
                   Save as Draft
@@ -457,13 +456,19 @@ export default function CreateTest() {
                 <Button 
                   type="submit" 
                   size="lg"
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold shadow-lg" 
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold shadow-lg px-8" 
                   disabled={createTestMutation.isPending}
                 >
                   <Wand2 className="mr-2" size={16} />
                   {createTestMutation.isPending ? "Creating Test..." : "🚀 Generate Test Link"}
                 </Button>
               </div>
+              
+              {questions.length > 0 && (
+                <div className="mt-3 text-sm text-gray-600 text-center">
+                  Total Questions: {questions.length} | Ready to generate test
+                </div>
+              )}
             </div>
           </form>
         </Form>
