@@ -448,19 +448,22 @@ export default function CreateTest() {
             </Card>
 
             {/* Action Buttons */}
-            <div className="flex justify-between">
-              <Button type="button" variant="secondary">
-                <Save className="mr-2" size={16} />
-                Save as Draft
-              </Button>
-              <Button 
-                type="submit" 
-                className="bg-blue-500 hover:bg-blue-600" 
-                disabled={createTestMutation.isPending}
-              >
-                <Wand2 className="mr-2" size={16} />
-                {createTestMutation.isPending ? "Creating..." : "Generate Test Link"}
-              </Button>
+            <div className="sticky bottom-4 bg-white border-t pt-4 -mx-6 px-6">
+              <div className="flex justify-between items-center">
+                <Button type="button" variant="secondary" size="lg">
+                  <Save className="mr-2" size={16} />
+                  Save as Draft
+                </Button>
+                <Button 
+                  type="submit" 
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold shadow-lg" 
+                  disabled={createTestMutation.isPending}
+                >
+                  <Wand2 className="mr-2" size={16} />
+                  {createTestMutation.isPending ? "Creating Test..." : "🚀 Generate Test Link"}
+                </Button>
+              </div>
             </div>
           </form>
         </Form>
