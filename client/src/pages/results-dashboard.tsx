@@ -14,14 +14,14 @@ export default function ResultsDashboard() {
   const testId = params?.testId || "";
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  const { data: testStats, isLoading: statsLoading, refetch: refetchStats } = useQuery<TestWithStats>({
-    queryKey: ["/api/tests", testId, "stats"],
+  const { data: testStats, isLoading: statsLoading, refetch: refetchStats, error: statsError } = useQuery<TestWithStats>({
+    queryKey: [`/api/tests/${testId}/stats`],
     enabled: !!testId,
     refetchInterval: 30000, // Refetch every 30 seconds for live updates
   });
 
-  const { data: attempts, isLoading: attemptsLoading, refetch: refetchAttempts } = useQuery<TestAttempt[]>({
-    queryKey: ["/api/tests", testId, "attempts"],
+  const { data: attempts, isLoading: attemptsLoading, refetch: refetchAttempts, error: attemptsError } = useQuery<TestAttempt[]>({
+    queryKey: [`/api/tests/${testId}/attempts`],
     enabled: !!testId,
     refetchInterval: 10000, // Refetch every 10 seconds for live updates
   });
@@ -61,6 +61,39 @@ export default function ResultsDashboard() {
   const getInitials = (name: string | null) => {
     if (!name) return "AN"; // Anonymous
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  };
+
+  const exportToCSV = () => {
+    if (!attempts || attempts.length === 0) {
+      alert("No data to export");
+      return;
+    }
+
+    const csvHeader = "Student Name,Score,Percentage,Time Taken,Submitted At,Status\n";
+    const csvData = attempts
+      .map(attempt => {
+        const percentage = attempt.totalMarks > 0 ? ((attempt.score / attempt.totalMarks) * 100).toFixed(1) : "0";
+        const timeTaken = attempt.timeTaken ? formatDuration(attempt.timeTaken) : "N/A";
+        const submittedAt = attempt.submittedAt ? new Date(attempt.submittedAt).toLocaleString() : "Not submitted";
+        const status = attempt.isCompleted ? "Completed" : "In Progress";
+        
+        return `"${attempt.studentName || 'Anonymous'}","${attempt.score}/${attempt.totalMarks}","${percentage}%","${timeTaken}","${submittedAt}","${status}"`;
+      })
+      .join("\n");
+
+    const csvContent = csvHeader + csvData;
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", `${testStats?.title || 'Test'}_Results.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   if (statsLoading || attemptsLoading) {
@@ -109,7 +142,11 @@ export default function ResultsDashboard() {
                 <RefreshCw className="mr-2" size={16} />
                 Refresh
               </Button>
-              <Button className="bg-emerald-500 hover:bg-emerald-600">
+              <Button 
+                className="bg-emerald-500 hover:bg-emerald-600"
+                onClick={exportToCSV}
+                disabled={!attempts || attempts.length === 0}
+              >
                 <Download className="mr-2" size={16} />
                 Export Results
               </Button>
