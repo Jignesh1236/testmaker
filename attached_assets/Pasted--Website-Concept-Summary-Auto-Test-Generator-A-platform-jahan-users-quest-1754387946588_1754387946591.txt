@@ -1,0 +1,120 @@
+
+
+## 🧠 **Website Concept Summary:**
+
+> **“Auto Test Generator”** – A platform jahan users questions upload karein (MCQ/NCQ), system uska test banaye, ek unique test link create ho, aur test dene wale students ke live results ek central dashboard pe dikhe.
+
+---
+
+## ✅ Features Breakdown
+
+### 🔹 **1. User Roles**
+
+* **Admin / Question Uploader**
+* **Test Taker / Student**
+* (Optional) **Public View for Results**
+
+---
+
+### 🔹 **2. Main Functionalities**
+
+#### 🧾 A. **Question Upload**
+
+* Admin ek form ya spreadsheet se questions upload kare:
+
+  * Question Text
+  * Options (A, B, C, D)
+  * Correct Answer
+  * Marks (optional)
+  * Time Limit (optional)
+* Bulk Upload via Excel/CSV
+
+#### 🧪 B. **Test Creation**
+
+* System auto test banaye uploaded questions se
+* Test settings:
+
+  * Title of test
+  * Time duration
+  * Total questions
+* Test ka ek **unique sharable link** generate ho
+
+  * Example: `testsite.com/test/abc123`
+
+#### 🔗 C. **Test Participation**
+
+* Test taker bas link pe click kare aur test start ho
+* Questions ek-ek karke ya full page mein show ho
+* Timer
+* Auto submit after time
+* No login required (or optional name input)
+
+#### 📊 D. **Live Results Page**
+
+* Ek **main dashboard URL** jahan test ka live result dikhe:
+
+  * Total Attempts
+  * Correct / Wrong
+  * Score / Percentage
+  * User Details (if any)
+
+Example: `testsite.com/results/abc123`
+
+---
+
+## 🖼️ Suggested Pages & Structure:
+
+| Page Name       | URL                 | Description                       |
+| --------------- | ------------------- | --------------------------------- |
+| Home            | `/`                 | Site intro and Create Test button |
+| Create Test     | `/create`           | Form to add questions             |
+| Test Page       | `/test/:testID`     | For test takers                   |
+| Results Page    | `/results/:testID`  | Live result dashboard             |
+| Admin Dashboard | `/admin` (optional) | View all created tests            |
+
+---
+
+## 🛠️ Tech Stack Suggestion
+
+### 🔸 Frontend:
+
+* **React.js** (interactive UI)
+* Tailwind CSS / Bootstrap (for styling)
+
+### 🔸 Backend:
+
+* **Node.js + Express.js** OR Python (Flask/Django)
+* **Database**: MongoDB / PostgreSQL
+* **File Upload (CSV)**: Multer (Node) / Django import-export
+
+### 🔸 Hosting:
+
+* **Frontend**: Vercel / Netlify
+* **Backend + DB**: Render / Railway / Heroku / DigitalOcean
+
+---
+
+## 🔐 Optional Features (Phase 2)
+
+* Login/Signup for test creators
+* Random question shuffling
+* Export result as PDF/CSV
+* Email notifications
+* Plagiarism or tab switch detection
+
+---
+
+## 🕒 Timeline (Estimate)
+
+| Task                     | Duration  |
+| ------------------------ | --------- |
+| Requirement Finalization | 1-2 days  |
+| Design UI/UX             | 2-3 days  |
+| Frontend Development     | 4-5 days  |
+| Backend Development      | 4-6 days  |
+| Testing & Deployment     | 2-3 days  |
+| **Total**                | \~2 weeks |
+
+---
+
+
