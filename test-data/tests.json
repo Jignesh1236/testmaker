@@ -1,1 +1,90 @@
-[]
+[
+  {
+    "id": "2dde7568-d94a-465f-a328-a1c06bfc06df",
+    "title": "day 1",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T09:59:27.144Z",
+    "updatedAt": "2025-09-02T09:59:27.144Z"
+  },
+  {
+    "id": "f1b4baf1-0ea1-41d1-97d0-31e0b83fed69",
+    "title": "Day 2",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T09:59:47.389Z",
+    "updatedAt": "2025-09-02T09:59:47.389Z"
+  },
+  {
+    "id": "3357a48b-d877-4e41-a3ae-a47a2f2d4644",
+    "title": "Day 3",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:00:20.279Z",
+    "updatedAt": "2025-09-02T10:00:20.279Z"
+  },
+  {
+    "id": "9904023d-e6cb-4afb-ab88-1e6c76ed3394",
+    "title": "day 4",
+    "duration": 30,
+    "shuffleQuestions": false,
+    "createdAt": "2025-09-02T10:00:40.908Z",
+    "updatedAt": "2025-09-02T10:00:40.908Z"
+  },
+  {
+    "id": "d49589c0-a0de-49df-9c55-e52d56f936cc",
+    "title": "day 5",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:01:00.246Z",
+    "updatedAt": "2025-09-02T10:01:00.246Z"
+  },
+  {
+    "id": "b2273b0b-3bf1-47e4-95e1-f6cb26c54ba4",
+    "title": "Day 6",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:01:21.730Z",
+    "updatedAt": "2025-09-02T10:01:21.730Z"
+  },
+  {
+    "id": "0909410c-2830-47b4-bc8b-4ead53b1dc71",
+    "title": "day 7",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:01:35.441Z",
+    "updatedAt": "2025-09-02T10:01:35.441Z"
+  },
+  {
+    "id": "79577837-b7d0-4213-b58c-4e36b2f06073",
+    "title": "day 8",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:01:47.858Z",
+    "updatedAt": "2025-09-02T10:01:47.858Z"
+  },
+  {
+    "id": "42ef9b82-a6b0-4bc3-97b0-5e58f3ae489b",
+    "title": "day 9",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:01:59.807Z",
+    "updatedAt": "2025-09-02T10:01:59.807Z"
+  },
+  {
+    "id": "57167cc6-f612-45c3-85aa-0136263849e2",
+    "title": "day 15",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:02:15.098Z",
+    "updatedAt": "2025-09-02T10:02:15.098Z"
+  },
+  {
+    "id": "ea97a569-ae49-4fab-9d1a-48f3ac34245e",
+    "title": "day 16",
+    "duration": 30,
+    "shuffleQuestions": true,
+    "createdAt": "2025-09-02T10:02:27.540Z",
+    "updatedAt": "2025-09-02T10:02:27.540Z"
+  }
+]
